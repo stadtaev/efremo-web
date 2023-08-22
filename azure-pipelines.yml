@@ -38,3 +38,10 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+    - task: AzureContainerApps@1
+      displayName: Publish to ACA
+      inputs:
+        azureSubscription: '679e3727-a22c-44ba-adb8-babdba28a25f'
+        imageToDeploy : 'efremoacr.azurecr.io/efremoweb:$(Build.BuildId)'
+        containerAppName: 'efremo-web'
+        resourceGroup: 'efremo-app'
